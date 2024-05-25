@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npx tsc",
     "publish": "npm run build && npm publish --dry-run",
-    "test": "mocha"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
