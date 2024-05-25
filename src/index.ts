@@ -2,10 +2,21 @@ import {JSONSchemaType} from "ajv";
 import {SchemaDefinition} from "mongoose";
 
 function convertStringField(key: string, value: any, schema: SchemaDefinition, isArray: boolean = false) {
-    return {
+    let def: any = {
         "type": isArray ? [String] : String,
         required: (schema.required as String[]).includes(key)
+    };
+    if (value.minLength) {
+        def["minLength"] = value.minLength;
     }
+    if (value.maxLength) {
+        def["maxLength"] = value.maxLength;
+    }
+    if (value.pattern) {
+        def["match"] = value.pattern;
+    }
+
+    return def
 }
 
 function convertNumberField(key: string, value: any, schema: JSONSchemaType<any>, isArray: boolean = false) {

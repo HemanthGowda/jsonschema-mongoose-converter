@@ -13,7 +13,9 @@ describe('it sums two numbers', () => {
                 "type": "number"
             },
             "title": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 10,
             },
             "completed": {
                 "type": "boolean"
@@ -22,7 +24,8 @@ describe('it sums two numbers', () => {
                 "type": "object",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "pattern": /^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$/
                     },
                     "id": {
                         "type": "number"
@@ -71,22 +74,22 @@ describe('it sums two numbers', () => {
     }
 
     const mongooseSchema = {
-        userId: { type: Number, required: true },
-        id: { type: Number, required: true },
-        title: { type: String, required: true },
-        completed: { type: Boolean, required: true },
+        userId: {type: Number, required: true},
+        id: {type: Number, required: true},
+        title: {type: String, required: true, minLength: 1, maxLength: 10},
+        completed: {type: Boolean, required: true},
         publisher: {
-            name: { type: String, required: true },
-            id: { type: Number, required: true }
+            name: {type: String, required: true, match: /^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$/},
+            id: {type: Number, required: true}
         },
         managers: [{
-            name: { type: String, required: true },
-            id: { type: Number, required: true }
+            name: {type: String, required: true},
+            id: {type: Number, required: true}
         }],
-        tags: { type: [String], required: true }
+        tags: {type: [String], required: true}
     }
 
-    it('must converts jsonschema to mongoose schema', () => {
+    it('must convert jsonschema to mongoose schema', () => {
         // @ts-ignore
         const result = convertToMongooseSchema(jsonSchema);
 
