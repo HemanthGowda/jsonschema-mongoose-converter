@@ -14,7 +14,7 @@ npm run test
 
 ## Install
 ```shell
-npm i @hemanthsr/jsonschema-to-mongoose-schema
+npm i jsonschema-mongoose-converter
 ```
 
 ### Usage
