@@ -1,12 +1,12 @@
 {
   "name": "@hemanthsr/jsonschema-to-mongoose-schema",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility which converts jsonschema to mongoose schema.",
   "main": "dist/index.js",
   "files": ["dist"],
   "scripts": {
     "build": "npx tsc",
-    "publish": "npm run build && npm publish --dry-run",
+    "publish": "npm run build && npm publish",
     "test": "jest"
   },
   "repository": {
