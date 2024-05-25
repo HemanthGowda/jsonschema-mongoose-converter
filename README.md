@@ -1,6 +1,11 @@
 # jsonschema-to-mongoose-schema
 Utility which converts jsonschema to mongoose schema.
 
+[![Build Status](https://github.com/HemanthGowda/jsonschema-mongoose-converter/workflows/CI/badge.svg)](https://github.com/HemanthGowda/jsonschema-mongoose-converter)
+[![npm version](https://badge.fury.io/js/jsonschema-mongoose-converter.svg)](https://badge.fury.io/js/jsonschema-mongoose-converter)
+
+[![NPM](https://nodei.co/npm/jsonschema-mongoose-converter.png)](https://nodei.co/npm/jsonschema-mongoose-converter/)
+
 ## Development
 Run test
 ```shell
