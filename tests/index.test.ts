@@ -7,7 +7,9 @@ describe('it sums two numbers', () => {
         "type": "object",
         "properties": {
             "userId": {
-                "type": "number"
+                "type": "number",
+                "minimum": 1,
+                "maximum": 6,
             },
             "id": {
                 "type": "number"
@@ -74,7 +76,7 @@ describe('it sums two numbers', () => {
     }
 
     const mongooseSchema = {
-        userId: {type: Number, required: true},
+        userId: {type: Number, required: true, min: 1, max: 6},
         id: {type: Number, required: true},
         title: {type: String, required: true, minLength: 1, maxLength: 10},
         completed: {type: Boolean, required: true},

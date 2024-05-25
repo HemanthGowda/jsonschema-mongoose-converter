@@ -20,10 +20,18 @@ function convertStringField(key: string, value: any, schema: SchemaDefinition, i
 }
 
 function convertNumberField(key: string, value: any, schema: JSONSchemaType<any>, isArray: boolean = false) {
-    return {
+    let def: any = {
         "type": isArray ? [Number] : Number,
         required: (schema.required as String[]).includes(key)
     };
+    if (value.minimum) {
+        def["min"] = value.minimum;
+    }
+    if (value.maximum) {
+        def["max"] = value.maximum;
+    }
+
+    return def;
 }
 
 function convertBooleanField(key: string, value: any, schema: JSONSchemaType<any>, isArray: boolean = false) {
