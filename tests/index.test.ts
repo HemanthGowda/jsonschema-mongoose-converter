@@ -1,4 +1,5 @@
 import {convertToMongooseSchema} from "../src/";
+import {Schema} from "mongoose";
 
 describe('it sums two numbers', () => {
     const jsonSchema = {
@@ -6,10 +7,8 @@ describe('it sums two numbers', () => {
         "description": "Generated schema for Root",
         "type": "object",
         "properties": {
-            "userId": {
-                "type": "number",
-                "minimum": 1,
-                "maximum": 6,
+            "user": {
+                "$ref": "users"
             },
             "id": {
                 "type": "number"
@@ -64,7 +63,7 @@ describe('it sums two numbers', () => {
             }
         },
         "required": [
-            "userId",
+            "user",
             "id",
             "title",
             "completed",
@@ -76,7 +75,7 @@ describe('it sums two numbers', () => {
     }
 
     const mongooseSchema = {
-        userId: {type: Number, required: true, min: 1, max: 6},
+        user: {type: Schema.Types.ObjectId, ref: 'users', required: true},
         id: {type: Number, required: true},
         title: {type: String, required: true, minLength: 1, maxLength: 10},
         completed: {type: Boolean, required: true},

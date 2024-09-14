@@ -1,5 +1,5 @@
 import {JSONSchemaType} from "ajv";
-import {SchemaDefinition} from "mongoose";
+import {Schema, SchemaDefinition} from "mongoose";
 
 function convertStringField(key: string, value: any, schema: SchemaDefinition, isArray: boolean = false) {
     let def: any = {
@@ -56,9 +56,22 @@ function convertArrayField(key: string, value: any, schema: JSONSchemaType<any>)
     }
 }
 
+function convertReferenceField(key: string, value: any, schema: JSONSchemaType<any>) {
+    return {
+        type: Schema.Types.ObjectId,
+        ref: value.$ref,
+        required: (schema.required as String[]).includes(key)
+    }
+}
+
 const convertToMongooseSchema = (schema: JSONSchemaType<any>): SchemaDefinition => {
     const mSchema: SchemaDefinition = {};
     for (const [key, value] of Object.entries(schema.properties as JSONSchemaType<any>)) {
+        if (value.$ref) {
+            mSchema[key] = convertReferenceField(key, value, schema)
+            continue;
+        }
+
         switch (value.type) {
             case "string":
                 mSchema[key] = convertStringField(key, value, schema)
@@ -77,7 +90,6 @@ const convertToMongooseSchema = (schema: JSONSchemaType<any>): SchemaDefinition 
                 break;
             default:
                 throw new Error(`Unknown type "${value.type}"`)
-
         }
     }
 
