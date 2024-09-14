@@ -1,6 +1,6 @@
 {
   "name": "@hemanthgowda/jsonschema-mongoose-converter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utility which converts jsonschema to mongoose schema.",
   "main": "dist/index.js",
   "files": ["dist"],
