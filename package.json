@@ -9,7 +9,6 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "publish": "npm run build && npm publish",
     "test": "jest"
   },
   "repository": {
