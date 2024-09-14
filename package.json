@@ -1,9 +1,12 @@
 {
-  "name": "jsonschema-mongoose-converter",
+  "name": "@hemanthgowda/jsonschema-mongoose-converter",
   "version": "1.0.3",
   "description": "Utility which converts jsonschema to mongoose schema.",
   "main": "dist/index.js",
   "files": ["dist"],
+  "publishConfig": {
+    "@hemanthgowda:registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "npx tsc",
     "publish": "npm run build && npm publish",
